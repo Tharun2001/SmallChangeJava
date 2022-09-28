@@ -55,7 +55,6 @@ class ProfileTest {
 		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
 	        Profile user = new Profile("FName",  "Lname", null, "asd", "adas", "9239291929", 3);
 	    });
-		System.out.println(exception.getMessage());
 	    assertTrue(exception.getMessage().contains("Date cannot be null."));
 	}
 	

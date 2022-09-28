@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.math.BigDecimal;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +21,7 @@ class PortfolioTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		portfolio = new Portfolio();
+		portfolio = new Portfolio("Account123", "Bank", BigDecimal.valueOf(100000));
 		security = new Stock("AAA", 45.5, "Abc Abd Abe", "Large Cap");
 		holding = new Holding(security, 5, 45.5);
 	}
