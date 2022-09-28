@@ -8,10 +8,10 @@ public class Profile {
 	private LocalDate dob;
 	private String username;
 	private String email;
-	private int phone;
+	private String phone;
 	private int risk;
 	
-	Profile(String fname, String lname, LocalDate date, String uname, String email, int phone, int risk) {
+	Profile(String fname, String lname, LocalDate date, String uname, String email, String phone, int risk) {
 		
 		if(fname.equals("") || fname.equals(null)) {
 			throw new IllegalArgumentException("First Name cannot be empty or null.");
@@ -35,13 +35,13 @@ public class Profile {
 		}
 		
 		if(email.equals("") || email.equals(null)) {
-			throw new IllegalArgumentException("Username cannot be empty or null.");
+			throw new IllegalArgumentException("Email cannot be empty or null.");
 		}
 		else {
 			this.email = email;
 		}
 		
-		if(Integer.toString(phone).length() < 10) {
+		if(phone.length() < 10) {
 			throw new IllegalArgumentException("Phone number must be 10 digits.");
 		}
 		else {
@@ -63,7 +63,7 @@ public class Profile {
 		}
 	}
 	
-	public boolean signup(String fname, String lname, LocalDate date, String uname, String email, int phone, int risk) {
+	public boolean signup(String fname, String lname, LocalDate date, String uname, String email, String phone, int risk) {
 		System.out.println("First Name : " + fname);
 		System.out.println("Last Name : " + lname);
 		System.out.println("UserName : " + uname);
@@ -75,7 +75,7 @@ public class Profile {
 	}
 	
 
-	public boolean display(String fname, String lname, LocalDate date, String uname, String email, int phone, int risk) {
+	public boolean display(String fname, String lname, LocalDate date, String uname, String email, String phone, int risk) {
 		System.out.println("First Name : " + fname);
 		System.out.println("Last Name : " + lname);
 		System.out.println("UserName : " + uname);
@@ -101,7 +101,7 @@ public class Profile {
 	public String getEmail() {
 		return email;
 	}
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 	public int getRisk() {

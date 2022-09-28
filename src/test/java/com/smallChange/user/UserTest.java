@@ -17,8 +17,27 @@ class UserTest {
 	}
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void testEmptyUsername() {
+		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+	        User user = new User("",  "password");
+	    });
+
+	    String expectedMessage = "Username cannot be empty or null.";
+	    String actualMessage = exception.getMessage();
+
+	    assertTrue(actualMessage.contains(expectedMessage));
+	}
+	
+	@Test
+	void testEmptyPassword() {
+		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+	        User user = new User("User",  "");
+	    });
+
+	    String expectedMessage = "Password cannot be empty or null.";
+	    String actualMessage = exception.getMessage();
+
+	    assertTrue(actualMessage.contains(expectedMessage));
 	}
 
 }
