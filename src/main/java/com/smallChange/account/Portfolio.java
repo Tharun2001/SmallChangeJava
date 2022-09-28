@@ -31,6 +31,10 @@ public class Portfolio {
 
 	public void updateTrade(Security security, String tradeType, double quantity, double price) throws Exception {
 		Holding holding = getHoldingBySymbol(security.getSymbol());
+
+		if(bankAcct.getBalance().compareTo(BigDecimal.valueOf(quantity*price))<0) {
+				throw new Exception("Insufficient balance to buy");
+			}
 		if (tradeType == "buy") {
 			if(bankAcct.getBalance().compareTo(BigDecimal.valueOf(quantity*price))<0) {
 				throw new Exception("Insufficient balance to buy");
