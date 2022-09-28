@@ -1,15 +1,18 @@
 package com.smallChange.account;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 import com.smallChange.security.Security;
 
 public class Portfolio {
+	private BankAccount bankAcct;
 
 	private ArrayList<Holding> holdings;
 
-	public Portfolio() {
+	public Portfolio(String accNumber, String bankName, BigDecimal balance) {
 		this.holdings = new ArrayList<Holding>();
+		this.bankAcct = new BankAccount(accNumber, bankName, balance);
 	}
 
 	public void addNewHolding(Security security, double quantity, double buyPrice) throws Exception {
@@ -29,7 +32,10 @@ public class Portfolio {
 	public void updateTrade(Security security, String tradeType, double quantity, double price) throws Exception {
 		Holding holding = getHoldingBySymbol(security.getSymbol());
 		if (tradeType == "buy") {
-			if (holding == null) {
+			if(bankAcct.getBalance().compareTo(BigDecimal.valueOf(quantity*price))<0) {
+				throw new Exception("Insufficient balance to buy");
+			}
+			else if (holding == null) {
 				this.addNewHolding(security, quantity, price);
 			} else {
 				holding.add(quantity, price);
