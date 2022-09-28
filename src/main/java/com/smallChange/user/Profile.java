@@ -1,6 +1,8 @@
 package com.smallChange.user;
 
 import java.time.LocalDate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Profile {
 	private String firstName;
@@ -10,6 +12,10 @@ public class Profile {
 	private String email;
 	private String phone;
 	private int risk;
+	
+	final String emailRegex = "^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$";
+    Pattern emailPattern = Pattern.compile(emailRegex);
+    
 	
 	Profile(String fname, String lname, LocalDate date, String uname, String email, String phone, int risk) {
 		
@@ -38,10 +44,14 @@ public class Profile {
 			throw new IllegalArgumentException("Email cannot be empty or null.");
 		}
 		else {
+			Matcher matcher = emailPattern.matcher(email);
+		    if (!matcher.matches()) {
+				throw new IllegalArgumentException("Email is invalid.");
+		    }
 			this.email = email;
 		}
 		
-		if(phone.length() < 10) {
+		if(phone.length() < 10 || phone.length() > 10) {
 			throw new IllegalArgumentException("Phone number must be 10 digits.");
 		}
 		else {
