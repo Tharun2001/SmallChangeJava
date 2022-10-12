@@ -1,4 +1,4 @@
-package com.fidelity.integration;
+package com.smallChange.integration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -8,11 +8,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * SimpleDataSourceTest defines unit tests for SimpleDataSource.
- * 
- * @author ROI Instructor Team
- */
 class SimpleDataSourceTest {
 	SimpleDataSource dataSource;
 	

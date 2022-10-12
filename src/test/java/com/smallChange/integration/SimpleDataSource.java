@@ -1,4 +1,4 @@
-package com.fidelity.integration;
+package com.smallChange.integration;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -122,41 +122,52 @@ public class SimpleDataSource implements DataSource {
 	/****** DataSource methods that we are not using *****/
 	@Override
 	public java.util.logging.Logger getParentLogger() throws SQLFeatureNotSupportedException {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public <T> T unwrap(Class<T> iface) throws SQLException {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public boolean isWrapperFor(Class<?> iface) throws SQLException {
+		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public Connection getConnection(String username, String password) throws SQLException {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public PrintWriter getLogWriter() throws SQLException {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void setLogWriter(PrintWriter out) throws SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public void setLoginTimeout(int seconds) throws SQLException {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public int getLoginTimeout() throws SQLException {
+		// TODO Auto-generated method stub
 		return 0;
 	}
+
 
 }
 
