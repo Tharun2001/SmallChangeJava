@@ -8,16 +8,17 @@ public class Profile {
 	private String firstName;
 	private String lastName;
 	private LocalDate dob;
-	private String username;
 	private String email;
 	private String phone;
+	private String username;
+	private String password;
 	private int risk;
 	
 	final String emailRegex = "^([_a-zA-Z0-9-]+(\\.[_a-zA-Z0-9-]+)*@[a-zA-Z0-9-]+(\\.[a-zA-Z0-9-]+)*(\\.[a-zA-Z]{1,6}))?$";
     Pattern emailPattern = Pattern.compile(emailRegex);
     
 	
-	Profile(String fname, String lname, LocalDate date, String uname, String email, String phone, int risk) {
+	public Profile(String fname, String lname, LocalDate date, String uname, String password, String email, String phone, int risk) {
 		
 		if(fname.equals("") || fname.equals(null)) {
 			throw new IllegalArgumentException("First Name cannot be empty or null.");
@@ -40,6 +41,13 @@ public class Profile {
 			this.username = uname;
 		}
 		
+		if(password.equals("") || password.equals(null)) {
+			throw new IllegalArgumentException("Password cannot be empty or null.");
+		}
+		else {
+			this.password = password;
+		}
+		
 		if(email.equals("") || email.equals(null)) {
 			throw new IllegalArgumentException("Email cannot be empty or null.");
 		}
@@ -56,13 +64,6 @@ public class Profile {
 		}
 		else {
 			this.phone = phone;
-		}
-		
-		if(risk >= 1 && risk <= 5) {
-			this.risk = risk;
-		}
-		else {
-			throw new IllegalArgumentException("Risk must be between 1 & 5.");
 		}
 		
 		if(date == null) {
@@ -116,5 +117,8 @@ public class Profile {
 	}
 	public int getRisk() {
 		return risk;
+	}
+	public String getPassword() {
+		return password;
 	}
 }

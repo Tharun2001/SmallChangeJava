@@ -22,7 +22,7 @@ class ProfileTest {
 	@Test
 	void testEmptyUsername() {
 		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-	        Profile user = new Profile("FName",  "Lname", LocalDate.now(), "", "a@gmail.com", "9239291929", 3);
+	        Profile user = new Profile("FName",  "Lname", LocalDate.now(), "", "a@gmail.com", "A",  "9239291929", 3);
 	    });
 	    assertTrue(exception.getMessage().contains("Username cannot be empty or null."));
 	}
@@ -30,7 +30,7 @@ class ProfileTest {
 	@Test
 	void testEmptyFirstName() {
 		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-	        Profile user = new Profile("",  "Lname", LocalDate.now(), "sda", "a@gmail.com", "9239291929", 3);
+	        Profile user = new Profile("",  "Lname", LocalDate.now(), "sda", "a@gmail.com", "A", "9239291929", 3);
 	    });
 	    assertTrue(exception.getMessage().contains("First Name cannot be empty or null."));
 	}
@@ -38,7 +38,7 @@ class ProfileTest {
 	@Test
 	void testEmptyLastName() {
 		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-	        Profile user = new Profile("FName",  "", LocalDate.now(), "asd", "a@gmail.com", "9239291929", 3);
+	        Profile user = new Profile("FName",  "", LocalDate.now(), "asd", "a@gmail.com", "A", "9239291929", 3);
 	    });
 	    assertTrue(exception.getMessage().contains("Last Name cannot be empty or null."));
 	}
@@ -46,7 +46,7 @@ class ProfileTest {
 	@Test
 	void testEmptyEmail() {
 		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-	        Profile user = new Profile("FName",  "Lname", LocalDate.now(), "asda", "", "9239291929", 3);
+	        Profile user = new Profile("FName",  "Lname", LocalDate.now(), "asda", "", "A","9239291929", 3);
 	    });
 	    assertTrue(exception.getMessage().contains("Email cannot be empty or null."));
 	}
@@ -54,7 +54,7 @@ class ProfileTest {
 	@Test
 	void testInvalidEmail() {
 		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-	        Profile user = new Profile("FName",  "Lname", LocalDate.now(), "asda", "a@gmail-com", "9239291929", 3);
+	        Profile user = new Profile("FName",  "Lname", LocalDate.now(), "asda", "a@gmail-com", "A","9239291929", 3);
 	    });
 	    assertTrue(exception.getMessage().contains("Email is invalid."));
 	}
@@ -62,7 +62,7 @@ class ProfileTest {
 	@Test
 	void testEmptyDate() {
 		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-	        Profile user = new Profile("FName",  "Lname", null, "asd", "a@gmail.com", "9239291929", 3);
+	        Profile user = new Profile("FName",  "Lname", null, "asd", "a@gmail.com", "A","9239291929", 3);
 	    });
 	    assertTrue(exception.getMessage().contains("Date cannot be null."));
 	}
@@ -70,7 +70,7 @@ class ProfileTest {
 	@Test
 	void testEmptyPhone() {
 		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-	        Profile user = new Profile("FName",  "Lname", LocalDate.now(), "sda", "a@gmail.com", "", 3);
+	        Profile user = new Profile("FName",  "Lname", LocalDate.now(), "sda", "a@gmail.com","A", "", 3);
 	    });
 	    assertTrue(exception.getMessage().contains("Phone number must be 10 digits."));
 	}
@@ -78,7 +78,7 @@ class ProfileTest {
 	@Test
 	void testInvalidPhone() {
 		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-	        Profile user = new Profile("FName",  "Lname", LocalDate.now(), "sda", "a@gmail.com", "939292929", 3);
+	        Profile user = new Profile("FName",  "Lname", LocalDate.now(), "sda", "a@gmail.com", "A","939292929", 3);
 	    });
 	    assertTrue(exception.getMessage().contains("Phone number must be 10 digits."));
 	}
@@ -86,7 +86,7 @@ class ProfileTest {
 	@Test
 	void testInvalidRisk() {
 		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-	        Profile user = new Profile("FName",  "Lname", LocalDate.now(), "das", "a@gmail.com", "9239291929", 6);
+	        Profile user = new Profile("FName",  "Lname", LocalDate.now(), "das", "a@gmail.com", "A","9239291929", 6);
 	    });
 	    assertTrue(exception.getMessage().contains("Risk must be between 1 & 5."));
 	}
