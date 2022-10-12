@@ -16,7 +16,7 @@ class AccountTest {
 	
 	@BeforeEach
 	void setUp() {
-		account = new Account("Brokerage");
+		account = new Account("ABC123","Brokerage");
 		bankAccount1 = new BankAccount("Account1", "Bank", BigDecimal.valueOf(100000));
 		bankAccount2 = new BankAccount("Account2", "Bank", BigDecimal.valueOf(200000));
 		bankAccount3 = new BankAccount("Account3", "Bank", BigDecimal.valueOf(300000));
@@ -36,14 +36,14 @@ class AccountTest {
 	@Test
 	void creation_NullType_Exception() {
 		assertThrows(IllegalArgumentException.class, () -> {
-			new Account(null);
+			new Account(null, null);
 		});
 	}
 
 	@Test
 	void creation_EmptyType_Exception() {
 		assertThrows(IllegalArgumentException.class, () -> {
-			new Account("");
+			new Account(null, "");
 		});
 	}
 	

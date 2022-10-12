@@ -5,18 +5,44 @@ import java.util.Objects;
 import java.util.Set;
 
 public class Account {
+	private String acct_num;
 	private String type;
 	private Set<BankAccount> accounts;
 	
-	public Account(String type) {
+	public Account(String acct_num, String type) {
 		super();
 		if(type == null || type.equals("")) {
 			throw new IllegalArgumentException("Type should not be null or empty.");
 		}
+		this.acct_num = acct_num;
 		this.type = type;
 		this.accounts = new HashSet<>();
 	}
 	
+	public String getAcct_num() {
+		return acct_num;
+	}
+
+	public void setAcct_num(String acct_num) {
+		this.acct_num = acct_num;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public Set<BankAccount> getAccounts() {
+		return accounts;
+	}
+
+	public void setAccounts(Set<BankAccount> accounts) {
+		this.accounts = accounts;
+	}
+
 	public void addAccount(BankAccount account) {
 		accounts.add(account);
 	}
@@ -42,10 +68,10 @@ public class Account {
 	public int getNoOfBankAccounts() {
 		return accounts.size();
 	}
-	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(accounts, type);
+		return Objects.hash(accounts, acct_num, type);
 	}
 
 	@Override
@@ -57,13 +83,10 @@ public class Account {
 		if (getClass() != obj.getClass())
 			return false;
 		Account other = (Account) obj;
-		return Objects.equals(accounts, other.accounts) && Objects.equals(type, other.type);
-	}
-
-	@Override
-	public String toString() {
-		return "Account [type=" + type + ", accounts=" + accounts + "]";
+		return Objects.equals(accounts, other.accounts) && Objects.equals(acct_num, other.acct_num)
+				&& Objects.equals(type, other.type);
 	}
 	
+
 	
 }
