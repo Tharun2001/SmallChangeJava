@@ -1,41 +1,58 @@
 package com.smallChange.security;
 
-public abstract class Security {
+public class Security {
 	
-	private String symbol; 
-	private double ltp;
-	private String name;
+	private int stockId;
+	private String stockName; 
+	private double stockLtp;
+	private String stockCode;
+	private String stockAssetClass;
 	
 	
-	public Security(String symbol, double ltp, String name) {
+	public Security(int s_id, String s_name, String s_code, double s_ltp, String s_ac) {
 		
-		if(symbol==null || symbol.length()==0) {
-			throw new IllegalArgumentException("Symbol cannot be empty");
+		if(s_code==null || s_code.length()==0) {
+			throw new IllegalArgumentException("Stock Code cannot be empty");
 		}
 		
-		if(name==null || name.length()==0) {
-			throw new IllegalArgumentException("Name cannot be empty");
+		if(s_name==null || s_name.length()==0) {
+			throw new IllegalArgumentException("Stock Name cannot be empty");
 		}
 		
-		if(ltp<0) {
-			throw new IllegalArgumentException("LTP cannot be less than zero");
+		if(s_ltp<0) {
+			throw new IllegalArgumentException("Stock LTP cannot be less than zero");
 		}
 		
-		this.symbol = symbol;
-		this.ltp = ltp;
-		this.name = name;
+		if(s_id<0) {
+			throw new IllegalArgumentException("Stock ID cannot be negative");
+		}
+		
+		this.stockId = s_id;
+		this.stockLtp = s_ltp;
+		this.stockName = s_name;
+		this.stockAssetClass = s_ac;
+		this.stockCode = s_code;
 	}
 	
-	public String getSymbol() {
-		return symbol;
+	public int getStockId() {
+		return stockId;
 	}
 	
-	public double getLtp() {
-		return ltp;
+	public double getStockLtp() {
+		return stockLtp;
 	}
 	
-	public String getName() {
-		return name;
+	public String getStockName() {
+		return stockName;
 	}
+	
+	public String getStockAssetClass() {
+		return stockAssetClass;
+	}
+	
+	public String getStockCode() {
+		return stockCode;
+	}
+
 
 }
