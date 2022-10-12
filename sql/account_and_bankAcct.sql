@@ -17,7 +17,7 @@ CREATE TABLE sc_bankaccount (
 ); 
 
 
-INSERT INTO sc_account(USERNAME, ACCT_NUM, ACCT_TYPE) VALUES ('User_123', 'ABC123', 'Brokerage');
+INSERT INTO sc_account(USERNAME, ACCT_NUM, ACCT_TYPE) VALUES ('aryan@smallchange.com', 'ABC123', 'Brokerage');
 INSERT INTO sc_bankaccount(acct_num, bank_acctnum, bank_name, balance) values('ABC123', '608502111', 'Brokerage', 1050000.0);
 
 COMMIT;
