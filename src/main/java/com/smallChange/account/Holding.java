@@ -38,7 +38,7 @@ public class Holding {
 	}
 
 	public double getCurrentValue() {
-		return security.getLtp() * this.holdingQuantity;
+		return security.getStockLtp() * this.holdingQuantity;
 	}
 
 	public Security getSecurity() {

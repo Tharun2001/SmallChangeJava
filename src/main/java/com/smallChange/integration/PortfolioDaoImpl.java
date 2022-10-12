@@ -1,16 +1,19 @@
-package com.smallChange.account;
+package com.smallChange.integration;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
+import com.smallChange.account.BankAccount;
+import com.smallChange.account.Holding;
 import com.smallChange.security.Security;
 
-public class Portfolio {
+public class PortfolioDaoImpl implements PortfolioDao {
+
 	private BankAccount bankAcct;
 
 	private ArrayList<Holding> holdings;
 
-	public Portfolio(String accNumber, String bankName, BigDecimal balance) {
+	public PortfolioDaoImpl(String accNumber, String bankName, BigDecimal balance) {
 		this.holdings = new ArrayList<Holding>();
 		this.bankAcct = new BankAccount(accNumber, bankName, balance);
 	}
