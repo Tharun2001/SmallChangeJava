@@ -9,5 +9,5 @@ public interface UserDao {
 	List<Profile> getAllUsers();
 	void signupUser(Profile p);
 	void deleteUser(String username);
-	void loginUser(User user);
+	boolean loginUser(User user);
 }

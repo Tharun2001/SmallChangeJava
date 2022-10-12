@@ -82,7 +82,7 @@ public class UserDaoImpl implements UserDao{
 			
 		} 
 		catch (SQLException e1) {
-			logger.error("Cannot insert into sc_users", sql1, e1);
+			//logger.error("Cannot insert into sc_users", sql1, e1);
 			throw new DatabaseException("Cannot insert into " + sql1, e1);
 		}
 		
@@ -90,14 +90,53 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public void deleteUser(String username) {
-		// TODO Auto-generated method stub
+		String sql1 = "DELETE FROM sc_users WHERE username = ?";
+
+		try(Connection conn = dataSource.getConnection(); 
+				PreparedStatement stmt1 = conn.prepareStatement(sql1)) {
+			
+			stmt1.setString(1, username);
+
+			stmt1.executeUpdate();
+			
+		} 
+		catch (SQLException e1) {
+			logger.error("Cannot delete from sc_users", sql1, e1);
+			throw new DatabaseException("Cannot delete from " + sql1, e1);
+		}
 		
 	}
 
 	@Override
-	public void loginUser(User user) {
-		// TODO Auto-generated method stub
-		
+	public boolean loginUser(User user) {
+		String sql1 = "select COUNT(username) from sc_users\r\n"
+				+ "WHERE \r\n"
+				+ "username = ?\r\n"
+				+ "AND\r\n"
+				+ "user_password = ?";
+
+		try(Connection conn = dataSource.getConnection(); 
+				PreparedStatement stmt1 = conn.prepareStatement(sql1)) {
+			
+			stmt1.setString(1, user.getUsername());
+			stmt1.setString(2, user.getPassword());
+
+			ResultSet rs = stmt1.executeQuery();
+			while(rs.next()) {
+				if(rs.getInt("count(username)") == 1) {
+					return true;
+				}
+				else {
+					return false;
+				}
+			}
+			
+		} 
+		catch (SQLException e1) {
+			logger.error("Cannot delete from sc_users", sql1, e1);
+			throw new DatabaseException("Cannot delete from " + sql1, e1);
+		}
+		return false;
 	}
 
 }

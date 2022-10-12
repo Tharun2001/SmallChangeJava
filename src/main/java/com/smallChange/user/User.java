@@ -4,7 +4,7 @@ public class User {
 	private String username;
 	private String password;
 	
-	User(String username, String password) {
+	public User(String username, String password) {
 		if(username.equals("") || username.equals(null)) {
 			throw new IllegalArgumentException("Username cannot be empty or null.");
 		}
