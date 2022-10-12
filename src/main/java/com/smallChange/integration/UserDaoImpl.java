@@ -11,12 +11,15 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.smallChange.user.Profile;
 import com.smallChange.user.User;
 
 public class UserDaoImpl implements UserDao{
 
-	
+	private final Logger logger = LoggerFactory.getLogger(UserDao.class);
 	DataSource dataSource;
 	public UserDaoImpl(DataSource ds) {
 		this.dataSource = ds;
@@ -40,7 +43,7 @@ public class UserDaoImpl implements UserDao{
 				String last_name = rs.getString("first_name");
 				
 				String dob = rs.getString("date_of_birth");
-				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yy");
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss");
 		        LocalDate localDate = LocalDate.parse(dob, formatter);
 		        
 				String email = rs.getString("email");
@@ -49,7 +52,7 @@ public class UserDaoImpl implements UserDao{
 				String password = rs.getString("user_password");
 				int risk = rs.getInt("risk_tolerance");
 				
-				Profile p = new Profile(first_name, last_name, localDate, email, phone, username, password, risk);
+				Profile p = new Profile(first_name, last_name, localDate, username, password, email, phone, risk);
 				users.add(p);
 			}
 		} 
@@ -61,7 +64,27 @@ public class UserDaoImpl implements UserDao{
 
 	@Override
 	public void signupUser(Profile p) {
-		// TODO Auto-generated method stub
+		String sql1 = "Insert into sc_users (first_name, last_name, date_of_birth, email, phone_number, username, user_password) values (?, ?, ?, ?, ?, ?, ?)";
+
+		try(Connection conn = dataSource.getConnection(); 
+				PreparedStatement stmt1 = conn.prepareStatement(sql1)) {
+			
+			stmt1.setString(1, p.getFirstName());
+			stmt1.setString(2, p.getLastName());
+			stmt1.setDate(3, java.sql.Date.valueOf(p.getDob()));
+			stmt1.setString(4, p.getEmail());
+			stmt1.setString(5, p.getPhone());
+			stmt1.setString(6, p.getUsername());
+			stmt1.setString(7, p.getPassword());
+
+			
+			stmt1.executeUpdate();
+			
+		} 
+		catch (SQLException e1) {
+			logger.error("Cannot insert into sc_users", sql1, e1);
+			throw new DatabaseException("Cannot insert into " + sql1, e1);
+		}
 		
 	}
 

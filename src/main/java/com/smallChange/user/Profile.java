@@ -59,7 +59,7 @@ public class Profile {
 			this.email = email;
 		}
 		
-		if(phone.length() < 10 || phone.length() > 10) {
+		if(phone.substring(phone.indexOf('-') + 1, phone.length()).length() < 10 || phone.substring(phone.indexOf('-') + 1, phone.length()).length() > 10) {
 			throw new IllegalArgumentException("Phone number must be 10 digits.");
 		}
 		else {
